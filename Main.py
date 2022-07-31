@@ -1,25 +1,61 @@
 class MyCircularQueue:
     def __init__(self, size: int):
         # Write code here
+        self.max_size = size
+        self.front = self.rear = -1
+        self.circular_queue = [None] * size        
 
     def enqueue(self, value: int) -> bool:
         # Write code here
+        if not self.is_full():
+            if self.rear == -1 and self.front == -1:
+                if len(self.circular_queue) == 0:
+                    self.circular_queue = [None] * self.max_size
+                self.rear = self.front = 0
+                self.circular_queue[self.rear] = value
+                return True
+            else:
+                self.rear = (self.rear + 1) % self.max_size
+                self.circular_queue[self.rear] = value
+                return True
+        else:
+            return False        
 
     def dequeue(self) -> bool:
         # Write code here
+        if not self.is_empty():
+            if self.rear == self.front:
+                self.circular_queue.clear()
+                self.rear = self.front = -1
+                return True
+            else:
+                self.circular_queue[self.front] = None
+                self.front = (self.front + 1) % self.max_size
+                return True
+        else:
+            return False        
 
     def get_front(self) -> int:
         # Write code here
-
+        if not self.is_empty():
+            return self.circular_queue[self.front]
+        else:
+            return -1
+        
     def get_rear(self):
         # Write code here
-
+        if not self.is_empty():
+            return self.circular_queue[self.rear]
+        else:
+            return -1
+        
     def is_empty(self):
         # Write code here
+        return True if self.rear == -1 and self.front == -1 else False        
 
     def is_full(self):
         # Write code here
-
+        return True if ((self.rear + 1) % self.max_size == self.front) else False
 
 # Do not change the following code
 operations = []
