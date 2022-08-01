@@ -22,7 +22,7 @@ At most 3000 calls will be made to enqueue, dequeue, get_front, get_rear, is_emp
 # Sample Output
 [None, True, True, True, False, 3, True, True, True, 4]
 
-**Explanation**
+**Explanation**</br>
 MyCircularQueue myCircularQueue = new MyCircularQueue(3);</br>
 myCircularQueue.enqueue(1); // return True</br>
 myCircularQueue.enqueue(2); // return True</br>
